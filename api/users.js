@@ -30,7 +30,7 @@ router.post('/register', async (req, res) => {
                         }
                         res.status(result.status).send(result.message);
                     }else{
-                        var sql = "INSERT INTO users (username, password, email, role) VALUES (?, ?, ?, 'member')";
+                        var sql = "INSERT INTO users (username, password, email, role, pfp) VALUES (?, ?, ?, 'member', 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png')";
                         db.query(sql, [username, md5(password), email], (err, rows) => {
                             if(err){
                                 res.status(500).send(err);
