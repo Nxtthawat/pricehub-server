@@ -121,7 +121,8 @@ router.post('/upload', upload.single('image'), async (req, res) => {
     try {
       const db = await priceHubDB;
 
-      const { menu_id, menu_topic, menu_author} = req.body;
+      const { menu_id, menu_topic, menu_recipe, menu_author} = req.body;
+      console.log(req.body);
 
       const sql = 'UPDATE menu SET menu_topic = ?, menu_recipe = ?, menu_author = ?, menu_image = ? WHERE menu_id = ?';
       db.query(sql, [menu_topic, menu_recipe, menu_author, filepath, menu_id], (err, result) => {
