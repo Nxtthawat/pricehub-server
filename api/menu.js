@@ -30,7 +30,7 @@ router.post('/upload', upload.single('image'), async (req, res) => {
     try {
       const db = await priceHubDB;
   
-      const sql = 'INSERT INTO menu(menu_topic,menu_recipe,menu_author,menu_image) VALUES(? ,? ,? ,? ,?)';
+      const sql = 'INSERT INTO menu(menu_topic,menu_recipe,menu_author,menu_image) VALUES(? ,? ,? ,? )';
       db.query(sql, [req.body.product_name, req.body.product_price, req.body.author , filepath], (err, result) => {
           if (err) {
               console.error('Error saving file information to database:', err);
@@ -123,7 +123,7 @@ router.post('/upload', upload.single('image'), async (req, res) => {
 
       const { menu_id, menu_topic, menu_recipe, menu_author} = req.body;
 
-      const sql = 'UPDATE menu SET menu_topic = ?, menu_recipe = ?, menu_howto = ?, menu_author = ?, menu_image = ? WHERE menu_id = ?';
+      const sql = 'UPDATE menu SET menu_topic = ?, menu_recipe = ?, menu_author = ?, menu_image = ? WHERE menu_id = ?';
       db.query(sql, [menu_topic, menu_recipe, menu_author, filepath, menu_id], (err, result) => {
         if (err) {
           console.error('Error updating product:', err);
